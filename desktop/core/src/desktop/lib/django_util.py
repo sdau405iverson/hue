@@ -34,7 +34,7 @@ from django.template.context import RequestContext
 from django.template.loader import render_to_string as django_render_to_string
 from django.utils.http import urlencode # this version is unicode-friendly
 from django.utils.translation import ungettext, ugettext
-from django.utils.timezone import LocalTimezone
+from django.utils.timezone import get_current_timezone
 
 import desktop.conf
 import desktop.lib.thrift_util
@@ -422,7 +422,7 @@ def timesince(d=None, now=None, abbreviate=False, separator=','):
 
   if not now:
     if d.tzinfo:
-      now = datetime.datetime.now(LocalTimezone(d))
+      now = datetime.datetime.now(tz=get_current_timezone())
     else:
       now = datetime.datetime.now()
 
