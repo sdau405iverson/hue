@@ -128,6 +128,12 @@ def is_https_enabled():
   """Hue is configured for HTTPS."""
   return bool(SSL_CERTIFICATE.get() and SSL_PRIVATE_KEY.get())
 
+USE_CHERRYPY_SERVER = Config(
+  key="use_cherrypy_server",
+  help=_("If set to true, CherryPy will be used. Otherwise, Gunicorn will be used as the webserver."),
+  type=coerce_bool,
+  default=False)
+
 HTTP_HOST = Config(
   key="http_host",
   help=_("HTTP host to bind to."),
